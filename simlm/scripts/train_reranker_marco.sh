@@ -10,7 +10,7 @@ if [ -z "$OUTPUT_DIR" ]; then
   OUTPUT_DIR="${DIR}/checkpoint/rerank_$(date +%F-%H%M.%S)"
 fi
 if [ -z "$DATA_DIR" ]; then
-  DATA_DIR="${DIR}/data/msmarco_reranker/"
+  DATA_DIR="${DIR}/data/abstract-sim-cs/"
 fi
 
 mkdir -p "${OUTPUT_DIR}"
@@ -19,7 +19,7 @@ mkdir -p "${OUTPUT_DIR}"
 PROC_PER_NODE=$(nvidia-smi --list-gpus | wc -l)
 #python -u -m torch.distributed.launch --nproc_per_node ${PROC_PER_NODE} src/train_cross_encoder.py \
 deepspeed src/train_cross_encoder.py --deepspeed ds_config.json \
-    --model_name_or_path google/electra-base-discriminator \
+    --model_name_or_path intfloat/e5-base-v2 \
     --per_device_train_batch_size 8 \
     --per_device_eval_batch_size 16 \
     --gradient_accumulation_steps 1 \
