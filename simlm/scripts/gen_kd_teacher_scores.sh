@@ -30,7 +30,7 @@ PYTHONPATH=src/ python -u src/inference/gen_teacher_scores.py \
     --fp16 \
     --data_dir "${DATA_DIR}" \
     --kd_gen_score_split "${SPLIT}" \
-    --kd_gen_score_batch_size 256 \
+    --kd_gen_score_batch_size 128 \
     --kd_gen_score_n_neg 1000 \
     --rerank_max_length 192 \
     --dataloader_num_workers 1 \
