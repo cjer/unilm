@@ -103,6 +103,7 @@ def _worker_gen_teacher_score(gpu_idx: int):
 
     scores = []
     for batch_dict in tqdm.tqdm(data_loader, desc='generate teacher score', mininterval=5):
+        print('=== a ===')
         batch_dict = move_to_cuda(batch_dict)
 
         with torch.cuda.amp.autocast() if args.fp16 else nullcontext():
