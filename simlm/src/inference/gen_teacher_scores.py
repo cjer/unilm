@@ -142,6 +142,7 @@ def _merge_teacher_scores(worker_cnt: int):
     def _update_score(ex: Dict) -> Dict:
         query_id = ex['query_id']
         pid_to_score = qid_to_pid_to_score[query_id]
+        logger.info('pid_to_score: {}'.format(str(pid_to_score)))
         ex['negatives']['doc_id'] = [neg_doc_id for neg_doc_id in ex['negatives']['doc_id'] if neg_doc_id in pid_to_score]
         ex['positives']['score'] = [pid_to_score[pos_doc_id] for pos_doc_id in ex['positives']['doc_id']]
         ex['negatives']['score'] = [pid_to_score[neg_doc_id] for neg_doc_id in ex['negatives']['doc_id']]
