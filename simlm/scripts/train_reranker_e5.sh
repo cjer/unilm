@@ -20,7 +20,7 @@ PROC_PER_NODE=$(nvidia-smi --list-gpus | wc -l)
 #python -u -m torch.distributed.launch --nproc_per_node ${PROC_PER_NODE} src/train_cross_encoder.py \
 deepspeed src/train_cross_encoder.py --deepspeed ds_config.json \
     --model_name_or_path intfloat/e5-base-v2 \
-    --per_device_train_batch_size 8 \
+    --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 16 \
     --gradient_accumulation_steps 1 \
     --do_train \
