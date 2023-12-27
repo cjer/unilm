@@ -47,7 +47,6 @@ def main():
     parser = HfArgumentParser((Arguments,))
     args: Arguments = parser.parse_args_into_dataclasses()[0]
     _common_setup(args)
-    args.report_to = 'none' if 'none' in args.report_to else args.report_to
     logger.info('Args={}'.format(str(args)))
 
     tokenizer: PreTrainedTokenizerFast = AutoTokenizer.from_pretrained(args.model_name_or_path)
