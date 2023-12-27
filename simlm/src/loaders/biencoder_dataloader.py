@@ -37,14 +37,13 @@ class RetrievalDataLoader:
         assert len(input_doc_ids) == len(examples['query']) * self.args.train_n_passages
 
         input_docs: List[str] = [self.corpus[doc_id]['contents'] for doc_id in input_doc_ids]
-        input_titles: List[str] = [self.corpus[doc_id]['title'] for doc_id in input_doc_ids]
+        #input_titles: List[str] = [self.corpus[doc_id]['title'] for doc_id in input_doc_ids]
 
         query_batch_dict = self.tokenizer(examples['query'],
                                           max_length=self.args.q_max_len,
                                           padding=PaddingStrategy.DO_NOT_PAD,
                                           truncation=True)
-        doc_batch_dict = self.tokenizer(input_titles,
-                                        text_pair=input_docs,
+        doc_batch_dict = self.tokenizer(input_docs,
                                         max_length=self.args.p_max_len,
                                         padding=PaddingStrategy.DO_NOT_PAD,
                                         truncation=True)
