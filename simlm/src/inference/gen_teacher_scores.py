@@ -22,7 +22,7 @@ from logger_config import logger
 from utils import move_to_cuda
 from models import RerankerForInference
 from data_utils import load_corpus, load_queries, save_to_readable_format
-from time import sleep
+
 parser = HfArgumentParser((Arguments,))
 args: Arguments = parser.parse_args_into_dataclasses()[0]
 kd_gen_score_in_path = os.path.join(args.data_dir, '{}.jsonl'.format(args.kd_gen_score_split))
@@ -164,7 +164,6 @@ def _batch_compute_teacher_score():
 
     logger.info('Use {} gpus'.format(gpu_count))
     torch.multiprocessing.spawn(_worker_gen_teacher_score, args=(), nprocs=gpu_count)
-    sleep(60)
     logger.info('Done batch generate teacher score')
 
     _merge_teacher_scores(gpu_count)
