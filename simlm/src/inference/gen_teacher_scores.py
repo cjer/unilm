@@ -44,7 +44,7 @@ def _kd_gen_score_transform_func(tokenizer: PreTrainedTokenizerFast,
         input_docs.append(prefix + corpus[doc_id]['contents'])
 
     input_queries = [queries[query_id] for query_id in examples['query_id']]
-    print(zip(input_queries, input_docs))
+    print(list(zip(input_queries, input_docs)))
     batch_dict = tokenizer(input_queries,
                            text_pair=input_docs,
                            max_length=args.rerank_max_length,
